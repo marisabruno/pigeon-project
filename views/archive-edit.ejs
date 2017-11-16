@@ -3,15 +3,15 @@
   <a class="float-right inner-nav-item" href="my-archives/<%=archiveDetails._id%>/delete">Delete</a>
   <div class="archive-container">
     <form>
-      <input type="text" name="archiveTitle" placeholder="Give your update a title!">
+      <input type="text" name="archiveTitle" value="<%=archiveDetails.title%>">
       <br>
-      <textarea name="archiveDescription" rows="8" cols="80" placeholder="include a description!"></textarea>
+      <textarea name="archiveDescription" rows="8" cols="80"><%=archiveDetails.description%></textarea>
       <br>
-      <input type="text" name="archiveImage" placeholder="type in an image url!">
+      <input type="text" name="archiveImage" value="<%=archiveDetails.imageUrl%>">
       <br>
       <!-- //Also must include option to upload a picture
       //first button is to archive your stuff -->
-      <button formaction="/my-archives" formmethod="post">archive</button>
+      <button formaction="/my-archives/<%=archiveDetails._id%>" formmethod="post">save changes</button>
       <!-- //second button is ACTUALLY just pulls up a modal using js
       //then you have to have a form in that modal that tells us where to...
       //... submit that first form info

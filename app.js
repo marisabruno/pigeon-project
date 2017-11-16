@@ -30,11 +30,11 @@ app.use(layouts);
 //ROUTES**********************
 //*********************
 
-const homepage = require('./routes/homepage');
-app.use('/', homepage);
-
 const myArchiveRouter=require ("./routes/archive-router");
 app.use(myArchiveRouter);
+
+const myUserRouter=require ("./routes/user-router");
+app.use(myUserRouter);
 
 //END ROUTES**********************
 //*********************

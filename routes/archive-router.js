@@ -65,12 +65,33 @@ router.get("/my-archives/:archiveId",(req,res,next)=>{
 router.get("/my-archives/:archiveId/edit",(req,res,next)=>{
   ArchiveModel.findById(req.params.archiveId)
   .then((archiveFromDb)=>{
-      res.locals.archiveInformation=archiveFromDb;
+      res.locals.archiveDetails=archiveFromDb;
       res.render("archive-edit");
   })
   .catch();
 });
 
+//SAVE and POST Archive Edits---------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
+
+router.post("/my-archives/:archiveId",(req,res,next)=>{
+    ArchiveModel.findById(req.params.archiveId)
+    .then((archiveFromDb)=>{
+      archiveFromDb.set({
+          title:req.body.archiveTitle,
+          description:req.body.archiveDescription,
+          imageUrl:req.body.archiveImage
+      });
+      return archiveFromDb.save();
+    })
+    .then(()=>{
+        res.redirect(`/my-archives/${req.params.archiveId}`);
+    })
+    .catch((err)=>{
+      next(err);
+    });
+
+});
 
 // ProductModel.findById(req.params.prodId)
 //       .then((productFromDb)=>{
