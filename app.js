@@ -8,6 +8,7 @@ const layouts      = require('express-ejs-layouts');
 
 
 const app = express();
+require ("./config/mongoose-setup");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,8 +26,18 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
 
-const index = require('./routes/index');
-app.use('/', index);
+
+//ROUTES**********************
+//*********************
+
+const homepage = require('./routes/homepage');
+app.use('/', homepage);
+
+const myArchiveRouter=require ("./routes/archive-router");
+app.use(myArchiveRouter);
+
+//END ROUTES**********************
+//*********************
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -1,0 +1,10 @@
+//Anything with the class ".global..." belngs in this file
+
+
+//flex-containter + justify center
+.global-justify-center{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+}
