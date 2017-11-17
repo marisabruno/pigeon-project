@@ -25,7 +25,12 @@
 
     <!-- //HEADER/NAV BAR**************************************
 //************************************** -->
-    <header class="container-fluid .fit-to-text">
+
+
+
+<header class="container-fluid .fit-to-text">
+
+<% if (currentUser) { %>
     <div class="row">
       <div class="col-sm-2 avatar">
         <div class="dropdown">
@@ -34,6 +39,7 @@
               <a href="/my-archives">My Archives</a>
               <a href="#">Profile</a>
               <a href="#">Settings</a>
+              <a href="/logout">Log Out</a>
             </div>
         </div>
       </div>
@@ -47,6 +53,28 @@
         <img class="icon add" src="/images/add-icon.png" alt="add a new update">
       </nav>
     </div>
+
+    <%}else{%>
+      <div class="row">
+        <div class="col-sm-2">
+          <a href="/login">Log In</a>
+          <a href="/signup">Sign Up</a>
+        </div>
+        <a href="/" class="col-sm-8 d-inline-flex justify-content-center">
+          <h1 class="logo-text">ENCAPSULATE</h1>
+          <img class="icon logo-image" src="/images/airplane.png" alt="airplane-logo">
+        </a>
+        <div class="col-sm-2">
+        <nav>
+          <img class="icon message" src="/images/messages-icon.png" alt="messages">
+          <img class="icon add" src="/images/add-icon.png" alt="add a new update">
+        </nav>
+      </div>
+
+    <%}%>
+
+
+
     </header>
 
 

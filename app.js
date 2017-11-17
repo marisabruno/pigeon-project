@@ -5,10 +5,16 @@ const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const layouts      = require('express-ejs-layouts');
-
+const session      = require("express-session");
+const passport     = require ("passport");
 
 const app = express();
+
+//configs
+
 require ("./config/mongoose-setup");
+
+require ("./config/passport-setup");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +31,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
+app.use(
+  session({
+    resave:true,
+    saveUninitialized:true,
+    secret:"this string is to avoid errors"
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Create a custom middleware to define "currentUser" in all our views
+app.use((req,res,next)=>{
+  //passport defines "req.user" if the User is logged in
+  //("req.user" is the result of the deserialize)
+  res.locals.currentUser=req.user;
+  //call "next()" to thell Express that we've finished
+  //otherwie your browser will hang
+  next();
+});
 
 
 //ROUTES**********************

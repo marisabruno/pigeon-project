@@ -1,0 +1,26 @@
+<h2>Sign Up</h2>
+
+<%if(typeof errorMessage !== "undefined"){%>
+  <p class="error-message"><%=errorMessage%></p>
+<%}%>
+
+<form id="admin-form" action="/signup" method="post">
+   <label for="first-name-input">First Name</label>
+   <input id="first-name-input" type="text" name="signupFirstName"
+   placeholder="e.g. Jon">
+   <label for="last-name-input">Last Name</label>
+   <input id="last-name-input" type="text" name="signupLastName"
+    placeholder="e.g. Snow">
+   <br>
+   <label for="email-input">Email</label>
+   <input id="email-input" type="text" name="signupEmail" placeholder="e.g.jon@snow.com">
+   <br>
+   <label for="password-input">Password</label>
+   <input id="password-input" type="password" name="signupPassword" placeholder="Must be at least 5 characters long and include special characters">
+
+   <button>Sign Up</button>
+
+   <p>Already have an account?
+   <a href="/login-page">Log In</a></p>
+
+</form>
