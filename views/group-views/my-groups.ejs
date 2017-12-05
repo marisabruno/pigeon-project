@@ -1,0 +1,19 @@
+<div class="global-justify-center">
+<h2>Your Groups</h2>
+</div>
+
+
+
+
+<%myGroups.forEach((oneGroup)=>{%>
+<a class="img" href="/my-groups/<%=oneGroup._id%>">
+  <div class="img__overlay"><%=oneGroup.name%></div>
+  <img src="<%= oneGroup.groupImage %>"/>
+</a>
+<%  }) %>
+
+
+
+<div class="global-justify-center">
+<h2><a href="/add-group">Add a Group</a></h2>
+</div>

@@ -11,6 +11,10 @@ const userSchema= new Schema({
       type:String,
       minlength:1
     },
+    username:{
+      type:String,
+      minlength:1
+    },
     email: {
       type:String,
       required: [true, "What's your email?"]
@@ -18,8 +22,10 @@ const userSchema= new Schema({
     encryptedPassword: {
       type:String,
       required:[true, "We need a password"]
-
-    }
+    },
+    groups: [{
+      type:Schema.Types.ObjectId
+    }]
   },
   {
   //automatically add "createdAt" and "updatedA" Date fields

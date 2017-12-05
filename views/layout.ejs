@@ -32,26 +32,28 @@
 
 <% if (currentUser) { %>
     <div class="row">
-      <div class="col-sm-2 avatar">
-        <div class="dropdown">
-            <button onclick="myFunction()"><img class="avatar dropbtn" src="/images/marisa-avatar.png" alt="marisa-avatar"></button>
-            <div id="myDropdown" class="dropdown-content">
-              <a href="/my-archives">My Archives</a>
-              <a href="#">Profile</a>
-              <a href="#">Settings</a>
-              <a href="/logout">Log Out</a>
-            </div>
-        </div>
+      <div class="col-sm-4">
+        <a href="/my-profile" class="nav-item">My Profile</a>
+        <!-- change your avatar or settings -->
       </div>
-      <a href="/homepage" class="col-sm-8 d-inline-flex justify-content-center">
+      <div class="col-sm-4 d-inline-flex justify-content-center ">
+      <a href="/homepage">
         <h1 class="logo-text">ENCAPSULATE</h1>
         <img class="icon logo-image" src="/images/airplane.png" alt="airplane-logo">
       </a>
-      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-4">
       <nav>
-        <img class="icon message" src="/images/messages-icon.png" alt="messages">
-        <img class="icon add" src="/images/add-icon.png" alt="add a new update">
+        <a href="/homepage" class="nav-item">Write an archive</a>
+        <a href="/my-archives" class="nav-item">My Archives</a>
+        <!-- Takes you to your archives -->
+        <a href="/group-updates" class="nav-item">Group Updates</a>
+        <a href="/my-groups" class="nav-item">My Groups</a>
+        <!-- <a href="/group-messages" class="nav-item">Group Archives</h3>   -->
+        <!-- See group archives -->
+        <!-- OR Manage/Add Groups -->
       </nav>
+      </div>
     </div>
 
     <%}else{%>

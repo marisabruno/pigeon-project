@@ -61,6 +61,9 @@ app.use(myArchiveRouter);
 const myUserRouter=require ("./routes/user-router");
 app.use(myUserRouter);
 
+const myGroupRouter=require ("./routes/group-router");
+app.use(myGroupRouter);
+
 //END ROUTES**********************
 //*********************
 

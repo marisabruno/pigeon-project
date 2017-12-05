@@ -5,7 +5,13 @@ const router  = express.Router();
 const UserModel=require("../models/user-model");
 
 
-
+function loginRequired (req,res,next){
+  if (req.user===undefined){
+    res.redirect("/login");
+    return;
+  }
+  next();
+}
 
 //SHOW LANDING PAGE---------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
@@ -19,7 +25,7 @@ router.get('/', (req, res, next) => {
 //SHOW HOME PAGE---------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
 
-router.get('/homepage', (req, res, next) => {
+router.get('/homepage', loginRequired, (req, res, next) => {
   res.render('homepage');
 });
 
@@ -48,12 +54,17 @@ router.post("/signup",(req,res,next)=>{
 
        return;
      }
-  UserModel.findOne({email:req.body.signupEmail})
+  UserModel.findOne({username:req.body.signupUsername})
   .then((userFromDb)=>{
     //userFromDb will be null if the email is NOT taken
     //display the form again if the email is taken
+    // if (userFromDb !== null){
+    //   res.locals.errorMessage="Email is Taken";
+    //   res.render("user-views/signup-page");
+    //   return;
+    // }
     if (userFromDb !== null){
-      res.locals.errorMessage="Email is Taken";
+      res.locals.errorMessage="Username is Taken";
       res.render("user-views/signup-page");
       return;
     }
@@ -63,6 +74,7 @@ router.post("/signup",(req,res,next)=>{
     const theUser=new UserModel({
       firstName: req.body.signupFirstName,
       lastName: req.body.signupLastName,
+      username: req.body.signupUsername,
       email: req.body.signupEmail,
       encryptedPassword: scrambledPassword
     });
@@ -138,7 +150,7 @@ router.post("/login",(req,res,next)=>{
 //Process to LOG OUT--------------------------------------------------
 //------------------------------------------------------------------------
 
-router.get("/logout",(req,res,next)=>{
+router.get("/logout",loginRequired,(req,res,next)=>{
   req.logout();
   res.redirect("/");
 });

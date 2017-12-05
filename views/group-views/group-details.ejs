@@ -1,0 +1,14 @@
+
+<h3>Group Name: <%=groupDetails.name%></h3>
+
+<a class="float-left inner-nav-item" href="/my-groups">Return to My Group</a>
+<a class="float-right inner-nav-item" href="/my-groups/<%=groupDetails._id%>/delete">Delete</a>
+<!-- <a class="float-right inner-nav-item" href="/my-archives/<%=groupDetails._id%>/edit">Edit</a> -->
+
+
+<h3>Add a new member of your group!</h3>
+<form action="/search/<%=groupDetails._id %>" method:"get">
+  <label for="search-term-input">Search by Username:</label>
+  <input id="search-term-input" type="text" name="searchTerm" placeholder="e.g. johnsnow1">
+  <button type="button" name="button">Search</button>
+</form>

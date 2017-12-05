@@ -10,7 +10,18 @@ const archiveSchema= new Schema({
     description: {type:String},
     imageUrl:{type:String},
     // //when the product was added to the system
-    dateAdded: {type:Date}
+    dateAdded: {type:Date},
+    owner:{
+      type:Schema.Types.ObjectId,
+      required:true
+    },
+    groups:[
+      { type:Schema.Types.ObjectId }
+    ]
+
+},
+{
+  timestamps:true
 });
 
 //the moel has the methods to make database queries
