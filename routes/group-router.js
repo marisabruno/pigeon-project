@@ -4,6 +4,7 @@ const router=express.Router();
 const GroupModel=require("../models/group-model");
 const UserModel=require("../models/user-model");
 
+const ObjectId = require('mongodb').ObjectID;
 
 function loginRequired (req,res,next){
   if (req.user===undefined){
@@ -83,7 +84,7 @@ router.get("/my-groups/:groupId",loginRequired,(req,res,next)=>{
 //Delete a Group---------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
 
-router.get("/my-groups/:groupId/delete",(req,res,next)=>{
+router.get("/my-groups/:groupId/delete",loginRequired, (req,res,next)=>{
   GroupModel.findByIdAndRemove(req.params.groupId)
     .then((groupFromDb)=>{
       res.redirect(`/my-groups`);
@@ -95,35 +96,47 @@ router.get("/my-groups/:groupId/delete",(req,res,next)=>{
 module.exports=router;
 
 
-//searching for members---------------------------------------------------------------------
+//Search for Users---------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-router.get("/search/:groupId", (req,res,next)=>{
+router.get("/my-groups/:groupId/search", loginRequired,(req,res,next)=>{
     //RegExp is the construction function for a regular expression
     //this allows us to do partial matching
     const searchRegex=new RegExp(req.query.searchTerm,"i");
-    //the letter "i" means ignore case
 
-    GroupModel.findById(req.params.groupId)
-    .exec()
-    .then((groupFromDb)=>{
-       res.locals.groupDetails=groupFromDb;
-       return groupDetails;
+    GroupModel.findById(req.params.groupId).exec()
+    .then((thisGroup)=>{
+
+      res.locals.myGroup=thisGroup;
+      return UserModel
+      .find({username:searchRegex})
+      .limit(10)
+      .exec();
+    })
+    .then((listOfResults)=>{
+      res.locals.searchTerm=req.query.searchTerm;
+      res.locals.searchResults=listOfResults;
+      res.render("group-views/search-page");
+    })
+    .catch((err)=>{
+    next(err);
+    });
+});
+
+
+//Add User to a Group---------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
+router.post("/add-user/:groupId/:userId",loginRequired,(req,res,send)=>{
+        const idGroup=req.params.groupId;
+  GroupModel.update(
+    { _id: new ObjectId(req.params.groupId) },
+    { $push: { users: req.params.userId } }).exec()
+    .then(()=>{
+      res.locals.groupAddedTo=req.params.groupId;
+      res.locals.userAdded=req.params.userId;
+      res.redirect("/my-groups");
     })
     .catch((err)=>{
       next(err);
-    });
+      });
 
-      UserModel
-      .find({username:searchRegex})
-      .limit(10)
-      .exec()
-      .then((listOfResults)=>{
-        res.locals.groupId=req.params.groupId;
-        res.locals.searchTerm=req.query.searchTerm;
-        res.locals.searchResults=listOfResults;
-        res.render("group-views/search-page");
-      })
-    .catch((err)=>{
-      next(err);
-    });
-});
+});//end post request

@@ -7,8 +7,8 @@
 
 
 <h3>Add a new member of your group!</h3>
-<form action="/search/<%=groupDetails._id %>" method:"get">
+<form action="/my-groups/<%=groupDetails._id %>/search" method:"get">
   <label for="search-term-input">Search by Username:</label>
   <input id="search-term-input" type="text" name="searchTerm" placeholder="e.g. johnsnow1">
-  <button type="button" name="button">Search</button>
+  <button>Search</button>
 </form>

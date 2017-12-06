@@ -1,4 +1,4 @@
-<h1><%=groupDetails.name%></h1>
+<h1><%=myGroup.name%></h1>
 
 <h2>Search Results</h2>
 
@@ -12,7 +12,9 @@
     <li>
       <img src="<%=oneUser.userAvatar%>">
       <p><%=oneUser.firstName%> <%=oneUser.lastName%></p>
-      <button formaction="/add/<%=groupDetails._id%>/<%=oneUser._id%>" formmethod="post" type="button" name="button">Add to your group!</button>
+      <form action="/add-user/<%=myGroup._id%>/<%=oneUser._id%>" method="post">
+        <button>Add user to:<b><%=myGroup.name%></b></button>
+      </form>
     </li>
   <%})%>
 </ul>

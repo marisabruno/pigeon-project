@@ -5,6 +5,7 @@ const router=express.Router();
 //which you can use because it's been exported
 
 const ArchiveModel=require("../models/archive-model");
+const GroupModel=require("../models/group-model");
 
 function loginRequired (req,res,next){
   if (req.user===undefined){
@@ -19,6 +20,7 @@ function loginRequired (req,res,next){
 //SHOW MY ARCHIVES---------------------------------------------------------------------
 //---------------------------------------------------------------------------------------
 router.get("/my-archives", loginRequired, (req,res,next)=>{
+
   ArchiveModel.find({owner:req.user._id}).sort({dateAdded:-1}).exec()
     .then((archiveResults)=>{
       res.locals.myArchives=archiveResults;
@@ -49,6 +51,36 @@ router.post("/my-archives", loginRequired,(req,res,next)=>{
     .then(()=>{
         console.log("Successful Save!");
         res.redirect("my-archives");
+    })
+    .catch((err)=>{
+      next(err);
+    });
+
+});
+
+
+//Share an archive---------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+router.post("/share-archive", loginRequired,(req,res,next)=>{
+  const theArchive=new ArchiveModel({
+    title: req.body.archiveTitle,
+    description: req.body.archiveDescription,
+    imageUrl:req.body.archiveImage,
+    // //when the product was added to the system
+    dateAdded: new Date (),
+    owner: req.user._id
+    });
+  theArchive.save()
+    .then(()=>{
+        const myGroups=req.user.groups;
+        return GroupModel.find({_id:myGroups}).exec();
+      })
+    .then((allGroups)=>{
+      console.log("Successful Save!");
+      console.log(allGroups);
+      res.locals.myGroups=allGroups;
+      res.locals.archive=theArchive;
+      res.render("archive-views/share-archive.ejs");
     })
     .catch((err)=>{
       next(err);
@@ -117,6 +149,8 @@ router.get("/my-archives/:archiveId/delete",(req,res,next)=>{
       next(err);
     });
 });
+
+
 
 
 module.exports=router;

@@ -1,0 +1,14 @@
+<h3>Share an archive!</h3>
+
+<p>You're sharing this archive: </p>
+<p><%=archive.title%></p>
+
+<br>
+
+<p>Select which groups you want to share it with:</p>
+
+<%myGroups.forEach((oneGroup)=>{%>
+  <input id="<%=oneGroup.name%>" type="checkbox" name="<%=oneGroup._id%>" value="<%=oneGroup.name%>" />
+  <label for="<%=oneGroup.name%>"><%=oneGroup.name%></label>
+  <br />
+<%})%>
