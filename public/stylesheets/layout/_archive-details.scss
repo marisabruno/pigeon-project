@@ -1,14 +1,15 @@
 .archive-container{
-  width: 80%;
+  width: 50%;
   background-color: white;
   text-align: center;
   margin: 0 auto;
   padding: 50px;
+  border: 5px solid $grey;
 }
 
 .inner-nav-item{
   margin: 5px;
-  padding: 5px;
+  padding: 3px;
 }
 
 .archive-outer-container{

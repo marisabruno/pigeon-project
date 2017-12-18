@@ -1,4 +1,4 @@
-<form action="/add-group" method="post">
+<!-- <form action="/add-group" method="post">
   <label for="groupName">Group Name:</label>
   <input id="groupName" name="groupName" type="text" placeholder="e.g. High School Homies">
   <label for="groupImage">Group Avatar:</label>
@@ -6,4 +6,27 @@
   <label for="groupDescription">Group Description</label>
   <textarea id="groupDescription" type="text" name="groupDescription">Give your group a description!</textarea>
   <button>Create Group</button>
-</form>
+</form> -->
+
+
+
+<div class="grey-background">
+  <div class="global-justify-center">
+    <h1>Create a group!</h1>
+  </div>
+
+  <br>
+
+  <div class="global-justify-center">
+      <form action="/add-group" method="post" class="update-form">
+        <input id="groupName" type="text" name="groupName" placeholder="Give your group a name!">
+        <br>
+        <textarea id="groupDescription" name="groupDescription" rows="4" cols="80" placeholder="include a description!"></textarea>
+        <br>
+        <button>Create Group</button>
+        <br>
+      </form>
+  </div>
+
+
+</div>

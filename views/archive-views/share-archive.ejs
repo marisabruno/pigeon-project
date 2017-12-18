@@ -1,14 +1,23 @@
-<h3>Share an archive!</h3>
 
-<p>You're sharing this archive: </p>
-<p><%=archive.title%></p>
+<div class="global-justify-center">
+  <h2>Share your archive with a group!</h2>
+  <br>
+</div>
 
-<br>
+<div class="align-center">
+  <h2>Title: "<%=archive.title%>"</h2>
+  <br>
+  <p>Select which groups you want to share it with:</p>
+</div>
 
-<p>Select which groups you want to share it with:</p>
 
-<%myGroups.forEach((oneGroup)=>{%>
-  <input id="<%=oneGroup.name%>" type="checkbox" name="<%=oneGroup._id%>" value="<%=oneGroup.name%>" />
-  <label for="<%=oneGroup.name%>"><%=oneGroup.name%></label>
-  <br />
-<%})%>
+<div class="global-justify-center">
+  <form method="post" action="/share-archive/<%=archive._id%>">
+  <%theGroups.forEach((oneGroup)=>{%>
+    <input type="checkbox" name="groups" value="<%=oneGroup._id%>">
+    <label for="<%=oneGroup.name%>"><%=oneGroup.name%></label>
+    <br />
+  <%})%>
+  <button>Share with Selected Groups</button>
+  <form>
+</div>

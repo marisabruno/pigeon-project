@@ -1,20 +1,29 @@
-<h2>Log in </h2>
+
+<
+
+<div class="global-justify-center">
+  <h1>Log in </h1>
+</div>
+
 
 <%if(typeof errorMessage !== "undefined"){%>
   <p class="error-message"><%=errorMessage%></p>
 <%}%>
 
 
-
 <form id="admin-form" action="/login" method="post">
    <label for="email-input">Email</label>
    <input id="email-input" type="text" name="loginEmail" placeholder="e.g.jon@snow.com">
    <br>
+   <br>
    <label for="password-input">Password</label>
    <input id="password-input" type="password" name="loginPassword" placeholder="Must be at least 8 characters long and include special characters">
-
+    <br>
    <button>Log In</button>
-
-    <p>Don't have an account?
-    <a href="/signup">Sign Up</a></p>
+    <br>
+    <div class="below-form">
+      <p>Don't have an account?
+      <a href="/signup">Sign Up</a></p>
+      <p>Or, go <a href="/">Home</a></p>
+    </div>
 </form>

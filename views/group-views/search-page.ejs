@@ -10,7 +10,6 @@
 <ul>
   <%searchResults.forEach((oneUser)=>{ %>
     <li>
-      <img src="<%=oneUser.userAvatar%>">
       <p><%=oneUser.firstName%> <%=oneUser.lastName%></p>
       <form action="/add-user/<%=myGroup._id%>/<%=oneUser._id%>" method="post">
         <button>Add user to:<b><%=myGroup.name%></b></button>
@@ -29,7 +28,7 @@
 
 <p>Not who you're looking for? Check your spelling!
   Try searching again with a different user name:</p>
-<form action="/search" method:"get">
+<form action="/my-groups/<%=myGroup._id %>/search" method:"get">
   <label for="search-term-input">Search by Username:</label>
   <input id="search-term-input" type="text" name="searchTerm" placeholder="e.g. johnsnow1">
   <button type="button" name="button">Search</button>

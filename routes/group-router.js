@@ -3,6 +3,7 @@ const router=express.Router();
 
 const GroupModel=require("../models/group-model");
 const UserModel=require("../models/user-model");
+const ArchiveModel=require("../models/archive-model");
 
 const ObjectId = require('mongodb').ObjectID;
 
@@ -41,7 +42,7 @@ router.get("/add-group", loginRequired, (req,res,next)=>{
 });
 
 
-//Go To Add Groups Page---------------------------------------------------------------------
+//Post groups---------------------------------------------------------------------
 //-------------------------------------------------------------------------------------e
 router.post("/add-group", loginRequired, (req,res,next)=>{
   const theGroup=new GroupModel({
@@ -73,7 +74,16 @@ router.post("/add-group", loginRequired, (req,res,next)=>{
 router.get("/my-groups/:groupId",loginRequired,(req,res,next)=>{
   GroupModel.findById(req.params.groupId)
     .then((groupFromDb)=>{
-      res.locals.groupDetails=groupFromDb;
+      res.locals.theGroup=groupFromDb;
+      const userIdArray=groupFromDb.users;
+      return UserModel.find({_id:userIdArray}).exec();
+    })
+    .then((allUsers)=>{
+      res.locals.usersInGroup=allUsers;
+      return ArchiveModel.find({groups:req.params.groupId}).exec();
+    })
+    .then((archives)=>{
+      res.locals.allArchives=archives;
       res.render("group-views/group-details");
     })
     .catch((err)=>{
@@ -140,3 +150,18 @@ router.post("/add-user/:groupId/:userId",loginRequired,(req,res,send)=>{
       });
 
 });//end post request
+
+//View an archive within a group---------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
+
+router.get("/my-groups/view-archive/:archiveId",loginRequired,(req,res,send)=>{
+ArchiveModel.findById(req.params.archiveId).exec()
+  .then((archive)=>{
+      res.locals.archiveDetails=archive;
+      res.render("archive-views/in-group-archive");
+  })
+  .catch((err)=>{
+    res.send("error!");
+    console.log(err);
+  });
+});

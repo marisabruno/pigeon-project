@@ -1,19 +1,26 @@
+
+<div class="grey-background">
 <div class="global-justify-center">
-<h2>Your Groups</h2>
+<h1>Your Groups</h1>
 </div>
 
-
-
-
-<%myGroups.forEach((oneGroup)=>{%>
-<a class="img" href="/my-groups/<%=oneGroup._id%>">
-  <div class="img__overlay"><%=oneGroup.name%></div>
-  <img src="<%= oneGroup.groupImage %>"/>
-</a>
-<%  }) %>
-
-
-
 <div class="global-justify-center">
+    <table class="table table-hover">
+      <tr>
+        <th>Status</th>
+        <th>Group Name</th>
+      </tr>
+    <%myGroups.forEach((oneGroup)=>{%>
+      <tr onclick="window.location='/my-groups/<%=oneGroup._id%>'">
+        <td>Active</td>
+        <td><%=oneGroup.name%></td>
+      </tr>
+  <%  }) %>
+    </table>
+</div>
+
+<div class="global-justify-center add-group-button">
 <h2><a href="/add-group">Add a Group</a></h2>
+</div>
+
 </div>

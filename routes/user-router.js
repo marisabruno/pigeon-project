@@ -155,6 +155,13 @@ router.get("/logout",loginRequired,(req,res,next)=>{
   res.redirect("/");
 });
 
+//View Profile--------------------------------------------------
+//------------------------------------------------------------------------
+
+router.get("/my-profile",loginRequired,(req,res,next)=>{
+  res.locals.userInfo=req.user;
+  res.render("user-views/my-profile.ejs");
+});
 
 
 //💥 💥 💥  DON'T MOVE THIS!!!💥 💥 💥 💥 ---------------------------------------------------------------------

@@ -2,14 +2,90 @@ body{
   background-color: $background-color;
 }
 
+.grey-background{
+  background-image: url(/images/background-grey.png);
+  height: 750px;
+}
+
 header{
   margin-top: 50px;
 }
+.update-form {
+  margin: 30px auto;
+  width: 60%;
+  color:$tertiary-color;
+    #update-title{
+      width: 100%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #update-title:focus{
+      border: 2px solid $secondary-color;
+    }
 
+    textarea{
+      width: 100%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 10px;
+    }
 
-.form-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 20px;
+    #update-description:focus{
+      border: 2px solid $secondary-color;
+      box-shadow:none;
+      box-shadow: none;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      outline:none;
+    }
+}
+
+.update-form a{
+  color: $primary-color;
+}
+
+.update-form label {
+  color: white;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.update-form input,
+.update-form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+}
+
+.update-form button {
+  background: $secondary-color;
+  border: 1px solid $secondary-color;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 60%;
+  display: block;
+  margin:0 auto 10px;
+}
+
+.update-form active {
+  border-color: $secondary-color;
+}
+
+#adminform button:hover {
+  background: #fff;
+  color: $secondary-color;
+  transition: .3s ease background;
 }

@@ -1,0 +1,41 @@
+
+
+#group-details-left{
+  width:100%;
+  display: inline-block;
+  margin: 5px;
+  padding:5px;
+  table{
+    width:100%;
+  }
+}
+
+#group-details-right{
+  width:100%;
+  display: inline-block;
+  margin: 5px;
+  padding:5px;
+}
+
+.add-members{
+  display: block;
+}
+
+.inner-nav{
+  display: block;
+  margin: 20px;
+  padding:10px;
+  height: 50px;
+}
+
+.return{
+  float:left;
+  font-size: 24px;
+
+}
+
+.delete{
+  float:right;
+  font-size: 24px;
+  margin-right: 10px;
+}

@@ -1,16 +1,20 @@
+.icon{
+  margin: 10px;
+  height: 45px;
+}
 
-.message{
-  width: 30px;
+#groups-icon{
+float:right;
+height:40px;
 }
-.add{
-  width: 20px;
+
+#update-icon{
+  float:right;
+  height:50px;
 }
-.logo-image{
-  height:60px;
-  display: inline-block;
-  // box-sizing: border-box;
-  // padding: 5px;
-}
-.avatar {
-  width:80px;
+
+.left-icon{
+  float: left;
+  height:40px;
+  margin-left:20px;
 }

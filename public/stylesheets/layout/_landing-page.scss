@@ -1,0 +1,51 @@
+#above-fold{
+  margin-top: 50px;
+  height: 656px;
+  background-image: url(/images/background-blue.png);
+  #blogger-man{
+    margin-left: 20px;
+  }
+  img{
+    display: inline;
+  }
+  #landing-page-text{
+    display: inline-block;
+    h1{
+      display: inline;
+      padding: 0px;
+    }
+    img{
+      display: inline;
+      height: 60px;
+    }
+    h3{
+      font-size: 36px;
+      text-align: center;
+    }
+
+    .logo{
+      height: 60px;
+      text-align: center;
+
+    }
+  }
+}
+
+#pigeon-h1{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+}
+
+#landing-page-nav{
+  a{
+    font-size: 20px;
+    color: $grey;
+    margin: 0 20px 0 0;
+    padding-top: 10px;
+    float: right;
+    text-decoration: none;
+
+  }
+}

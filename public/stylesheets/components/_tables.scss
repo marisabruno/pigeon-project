@@ -1,15 +1,29 @@
 table{
   background-color: white;
   width: 80%;
+  font-family: 'Mukta', sans-serif;
   th{
-    color:$background-color;
+    color:white;
+    font-size: 24px;
+
   }
   td{
-    color:$background-color;
+    color:$tertiary-color;
+    font-size: 16px;
   }
 }
 
 .table{
   background-color: white;
   width: 80%;
+}
+
+th{
+  background-color: $secondary-color;
+  color: white;
+}
+
+th:hover{
+  background-color: $secondary-color;
+  color: white;
 }

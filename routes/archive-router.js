@@ -7,6 +7,8 @@ const router=express.Router();
 const ArchiveModel=require("../models/archive-model");
 const GroupModel=require("../models/group-model");
 
+const ObjectId = require('mongodb').ObjectID;
+
 function loginRequired (req,res,next){
   if (req.user===undefined){
     res.redirect("/login");
@@ -59,7 +61,7 @@ router.post("/my-archives", loginRequired,(req,res,next)=>{
 });
 
 
-//Share an archive---------------------------------------------------------------------
+//POST Share an archive (Step 1: Create Archive)---------------------------------------------------------------------
 //------------------------------------------------------------------------------------
 router.post("/share-archive", loginRequired,(req,res,next)=>{
   const theArchive=new ArchiveModel({
@@ -72,13 +74,12 @@ router.post("/share-archive", loginRequired,(req,res,next)=>{
     });
   theArchive.save()
     .then(()=>{
-        const myGroups=req.user.groups;
-        return GroupModel.find({_id:myGroups}).exec();
+        const userId= req.user._id;
+        return GroupModel.find({users:userId}).exec();
       })
     .then((allGroups)=>{
       console.log("Successful Save!");
-      console.log(allGroups);
-      res.locals.myGroups=allGroups;
+      res.locals.theGroups=allGroups;
       res.locals.archive=theArchive;
       res.render("archive-views/share-archive.ejs");
     })
@@ -86,6 +87,23 @@ router.post("/share-archive", loginRequired,(req,res,next)=>{
       next(err);
     });
 
+});
+
+//POST Share an archive (Step 2: Attach archive to selected group)---------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+
+router.post("/share-archive/:archiveId",loginRequired, (req,res,send)=>{
+  console.log("the groups are " + req.body.groups);
+  ArchiveModel.update(
+    { _id: new ObjectId(req.params.archiveId) },
+    { $push: { groups:req.body.groups} }).exec()
+    .then(()=>{
+      res.locals.groups=req.body.groups;
+      res.render("archive-views/share-successful.ejs");
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
 });
 
 

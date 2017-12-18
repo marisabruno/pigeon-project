@@ -1,13 +1,17 @@
 <div class="archive-outer-container">
-  <a class="float-left inner-nav-item" href="/my-archives">Return to My Archives</a>
-  <a class="float-right inner-nav-item" href="/my-archives/<%=archiveDetails._id%>/delete">Delete</a>
-  <a class="float-right inner-nav-item" href="/my-archives/<%=archiveDetails._id%>/edit">Edit</a>
+
+<div class="inner-nav">
+  <a class="return" href="/my-archives">Return to My Archives</a>
+  <a class="delete" href="/my-archives/<%=archiveDetails._id%>/delete">Delete</a>
+  <a class="delete" href="/my-archives/<%=archiveDetails._id%>/edit">Edit</a>
+</div>
+
   <div class="archive-container">
-      <img src="<%=archiveDetails.imageUrl%>">
-      <br>
-      <br>
-      <h3><%=archiveDetails.title%></h3>
+      <h3><%=archiveDetails.dateAdded.toDateString()%></h3>
+
+      <h2><%=archiveDetails.title%></h2>
       <br>
       <p><%=archiveDetails.description%></p>
   </div>
+
 </div>

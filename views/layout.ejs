@@ -7,13 +7,19 @@
     <style>
         @font-face { font-family: Moon ; src: url('/fonts/moon-light.otf'); }
     </style>
+    <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/javascripts/responsive.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Mukta|Noto+Sans:400,700|Playfair+Display+SC|Vollkorn+SC" rel="stylesheet">
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/javascripts/popups.js"></script>
     <link rel="stylesheet" href="/stylesheets/style.min.css">
   </head>
@@ -31,48 +37,49 @@
 <header class="container-fluid .fit-to-text">
 
 <% if (currentUser) { %>
-    <div class="row">
-      <div class="col-sm-4">
-        <a href="/my-profile" class="nav-item">My Profile</a>
-        <!-- change your avatar or settings -->
-      </div>
-      <div class="col-sm-4 d-inline-flex justify-content-center ">
-      <a href="/homepage">
-        <h1 class="logo-text">ENCAPSULATE</h1>
-        <img class="icon logo-image" src="/images/airplane.png" alt="airplane-logo">
-      </a>
-      </div>
-      <div class="col-sm-4">
-      <nav>
-        <a href="/homepage" class="nav-item">Write an archive</a>
-        <a href="/my-archives" class="nav-item">My Archives</a>
-        <!-- Takes you to your archives -->
-        <a href="/group-updates" class="nav-item">Group Updates</a>
-        <a href="/my-groups" class="nav-item">My Groups</a>
-        <!-- <a href="/group-messages" class="nav-item">Group Archives</h3>   -->
-        <!-- See group archives -->
-        <!-- OR Manage/Add Groups -->
-      </nav>
-      </div>
-    </div>
+  <!-- <a href="/homepage"><img class="left-icon icon" src="/images/pigeon.png" alt="logo"></a>
+  <div class="dropdown">
+      <img class="dropdown-toggle icon" class="left-icon" src="/images/user.png" alt="User" data-toggle="dropdown">
+      <ul class="dropdown-menu">
+        <li><a href="/my-archives">My Archives</a></li>
+        <li><a href="/my-profile">My Profile</a></li>
+        <li><a href="/logout">Log Out</a></li>
+      </ul>
+  </div> -->
+
+  <div class="dropdown left-icon">
+      <img class="dropdown-toggle icon" src="/images/pigeon.png" alt="User" data-toggle="dropdown">
+      <ul class="dropdown-menu">
+        <li><a href="/homepage">Home</a></li>
+        <li><a href="/my-profile">My Profile</a></li>
+        <li><a href="/logout">Log Out</a></li>
+      </ul>
+  </div>
+
+<a href="/homepage"><img class="left-icon icon" src="/images/write-message.png" alt="write update"></a>
+
+  <!-- groups -->
+  <!-- <div class="dropdown" id="groups-icon">
+      <img class="dropdown-toggle icon" id="groups-icon" src="/images/groups.png" alt="groups" data-toggle="dropdown">
+      <ul class="dropdown-menu dropdown-menu-right">
+        <li><a href="/my-groups">My Groups</a></li>
+      </ul>
+  </div> -->
+  <a href="/my-groups"><img id="groups-icon" class="icon" src="/images/groups.png" alt="view group"></a>
+  <a href="/my-archives"><img id="update-icon" class="icon"  src="/images/user.png" alt="logo"></a>
+  <!-- write an update -->
+
+
+
+
+
+
 
     <%}else{%>
-      <div class="row">
-        <div class="col-sm-2">
-          <a href="/login">Log In</a>
-          <a href="/signup">Sign Up</a>
-        </div>
-        <a href="/" class="col-sm-8 d-inline-flex justify-content-center">
-          <h1 class="logo-text">ENCAPSULATE</h1>
-          <img class="icon logo-image" src="/images/airplane.png" alt="airplane-logo">
-        </a>
-        <div class="col-sm-2">
-        <nav>
-          <img class="icon message" src="/images/messages-icon.png" alt="messages">
-          <img class="icon add" src="/images/add-icon.png" alt="add a new update">
-        </nav>
-      </div>
-
+      <nav id="landing-page-nav">
+        <a href="/signup">Sign Up</a>
+        <a href="/login">Log In</a>
+      </nav>
     <%}%>
 
 
@@ -81,6 +88,10 @@
 
 
     <%- body %>
+
+    <!-- <footer class="global-justify-center">
+      Made with &hearts; at Ironhack
+    </footer> -->
 
   </body>
 </html>

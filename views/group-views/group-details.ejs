@@ -1,14 +1,67 @@
 
-<h3>Group Name: <%=groupDetails.name%></h3>
+<div class="grey-background">
+  <div class="global-justify-center">
+    <h1><%=theGroup.name%></h1>
+  </div>
 
-<a class="float-left inner-nav-item" href="/my-groups">Return to My Group</a>
-<a class="float-right inner-nav-item" href="/my-groups/<%=groupDetails._id%>/delete">Delete</a>
-<!-- <a class="float-right inner-nav-item" href="/my-archives/<%=groupDetails._id%>/edit">Edit</a> -->
+  <div class="inner-nav">
+    <a class="return " href="/my-groups">Return to My Group</a>
+    <a class="delete" href="/my-groups/<%=theGroup._id%>/delete">Delete</a>
+  </div>
 
 
-<h3>Add a new member of your group!</h3>
-<form action="/my-groups/<%=groupDetails._id %>/search" method:"get">
-  <label for="search-term-input">Search by Username:</label>
-  <input id="search-term-input" type="text" name="searchTerm" placeholder="e.g. johnsnow1">
-  <button>Search</button>
-</form>
+
+<div class="container container-fluid">
+  <div class="row group-details-page">
+    <div class="col-md-4">
+      <div id="group-details-left">
+        <div class="global-justify-center">
+            <table class="table table-hover">
+              <tr>
+                <th>Group Members</th>
+              </tr>
+            <% usersInGroup.forEach((oneUser)=>{%>
+              <tr>
+                <td><%=oneUser.email%></td>
+              </tr>
+          <%  }) %>
+            </table>
+        </div>
+        <section class="add-members">
+          <h3>Add a new member of your group!</h3>
+          <form action="/my-groups/<%=theGroup._id %>/search" method:"get">
+            <label for="search-term-input">Search by Username:</label>
+            <input id="search-term-input" type="text" name="searchTerm" placeholder="e.g. johnsnow1">
+            <button>Search</button>
+          </form>
+        </section>
+      </div>
+    </div>
+    <div class="col-md-8">
+
+        <div id="group-details-right">
+          <div class="global-justify-center">
+              <table class="table table-hover">
+                <tr>
+                  <th>Date</th>
+                  <th>Title</th>
+                  <th>Creator</th>
+                </tr>
+              <%allArchives.forEach((oneArchive)=>{%>
+                <tr onclick="window.location='/my-groups/view-archive/<%=oneArchive._id%>'">
+                  <td><%=oneArchive.dateAdded.toDateString()%></td>
+                  <td><%=oneArchive.title%></td>
+                  <td><%=oneArchive.owner%></td>
+                </tr>
+            <%  }) %>
+              </table>
+          </div>
+    </div>
+  </div>
+</div>
+
+
+
+  </div>
+
+</div>

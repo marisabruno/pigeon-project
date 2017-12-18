@@ -1,4 +1,7 @@
-<h2>Sign Up</h2>
+<div class="global-justify-center">
+  <h1>Sign Up</h1>
+</div>
+
 
 <%if(typeof errorMessage !== "undefined"){%>
   <p class="error-message"><%=errorMessage%></p>
@@ -24,7 +27,10 @@
 
    <button>Sign Up</button>
 
-   <p>Already have an account?
-   <a href="/login-page">Log In</a></p>
+   <div class="below-form">
+     <p>Don't have an account?
+     <a href="/login-page">Log In</a></p>
+     <p>Or, go <a href="/">Home</a></p>
+   </div>
 
 </form>
