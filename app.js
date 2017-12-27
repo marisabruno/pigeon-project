@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express      = require('express');
 const path         = require('path');
 const favicon      = require('serve-favicon');
@@ -9,12 +11,17 @@ const session      = require("express-session");
 const passport     = require ("passport");
 
 const app = express();
+const mongoose=require ("mongoose");
+mongoose.Promise=Promise;
+
 
 //configs
 
-require ("./config/mongoose-setup");
+// require ("./config/mongoose-setup");
 
 require ("./config/passport-setup");
+
+mongoose.connect(process.env.MONGODB_URI);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
